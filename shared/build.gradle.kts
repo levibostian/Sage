@@ -20,16 +20,35 @@ kotlin {
         framework {
             baseName = "shared"
         }
+
+        /**
+         * Shared kotlin module can only use objective-c pods, not pure swift. Kotlin at this time can only compile to and from (2-way support) with objective-c.
+         *
+         * Learn more
+         * https://kotlinlang.org/docs/multiplatform-mobile-ios-dependencies.html
+         * https://youtrack.jetbrains.com/issue/KT-49521/Support-direct-interoperability-with-Swift
+         */
+        pod("ObjectiveDropboxOfficial") {
+            version = "~> 6.3.2"
+        }
     }
     
     sourceSets {
-        val commonMain by getting
+        val commonMain by getting {
+            dependencies {
+                implementation("com.russhwolf:multiplatform-settings:0.9")
+            }
+        }
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
             }
         }
-        val androidMain by getting
+        val androidMain by getting {
+            dependencies {
+                implementation("com.dropbox.core:dropbox-core-sdk:5.2.0")
+            }
+        }
         val androidTest by getting
         val iosX64Main by getting
         val iosArm64Main by getting
