@@ -5,6 +5,9 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
 import com.russhwolf.settings.AndroidSettings
+import com.squareup.sqldelight.android.AndroidSqliteDriver
+import com.squareup.sqldelight.db.SqlDriver
+import earth.levi.sage.db.SageDatabase
 import earth.levi.sage.store.KeyValueStore
 import earth.levi.sage.util.Logger
 import earth.levi.sage.util.LoggerImpl
@@ -16,9 +19,11 @@ import earth.levi.sage.util.LoggerImpl
  */
 object ContextDependents {
     lateinit var sharedPreferences: SharedPreferences
+    lateinit var sqlDriver: AndroidSqliteDriver
 
     fun initialize(context: Context) {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
+        sqlDriver = AndroidSqliteDriver(SageDatabase.Schema, context, "sage.db")
     }
 }
 
@@ -27,3 +32,6 @@ actual val DiGraph.keyValueStore: KeyValueStore
 
 actual val DiGraph.logger: Logger
     get() = LoggerImpl()
+
+actual val DiGraph.sqlDriver: SqlDriver
+    get() = ContextDependents.sqlDriver

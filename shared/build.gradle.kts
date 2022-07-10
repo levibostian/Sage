@@ -2,6 +2,7 @@ plugins {
     kotlin("multiplatform")
     kotlin("native.cocoapods")
     id("com.android.library")
+    id("com.squareup.sqldelight")
 }
 
 version = "1.0"
@@ -37,6 +38,11 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation("com.russhwolf:multiplatform-settings:0.9")
+
+                with(Deps.SqlDelight) {
+                    implementation(runtime)
+                    implementation(coroutineExtensions)
+                }
             }
         }
         val commonTest by getting {
@@ -47,6 +53,7 @@ kotlin {
         val androidMain by getting {
             dependencies {
                 implementation("com.dropbox.core:dropbox-core-sdk:5.2.0")
+                implementation(Deps.SqlDelight.androidDriver)
             }
         }
         val androidTest by getting
@@ -58,6 +65,10 @@ kotlin {
             iosX64Main.dependsOn(this)
             iosArm64Main.dependsOn(this)
             iosSimulatorArm64Main.dependsOn(this)
+
+            dependencies {
+                implementation(Deps.SqlDelight.nativeDriver)
+            }
         }
         val iosX64Test by getting
         val iosArm64Test by getting
@@ -82,4 +93,11 @@ android {
 
 dependencies {
     testImplementation("junit:junit:4.13.2")
+}
+
+sqldelight {
+    database("SageDatabase") {
+        packageName = "earth.levi.sage.db"
+        sourceFolders = listOf("sqldelight")
+    }
 }
