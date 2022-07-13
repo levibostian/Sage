@@ -3,6 +3,7 @@ plugins {
     kotlin("native.cocoapods")
     id("com.android.library")
     id("com.squareup.sqldelight")
+    id("com.rickclephas.kmp.nativecoroutines") version "0.12.6"
 }
 
 version = "1.0"
@@ -37,7 +38,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation("com.russhwolf:multiplatform-settings:0.9")
+                implementation("com.russhwolf:multiplatform-settings:0.9") // for key/value storage on KMP
 
                 with(Deps.SqlDelight) {
                     implementation(runtime)
