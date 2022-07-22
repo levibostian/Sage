@@ -2,7 +2,7 @@ package earth.levi.sage.util
 
 import android.util.Log
 
-actual class LoggerImpl(): Logger {
+actual class LoggerImpl: Logger {
     private val tag = "[Sage]"
 
     override fun debug(message: String) {
@@ -15,5 +15,9 @@ actual class LoggerImpl(): Logger {
 
     override fun error(message: String) {
         Log.e(tag, message)
+    }
+
+    override fun error(error: Throwable) {
+        error.message?.let { Log.e(tag, it) }
     }
 }

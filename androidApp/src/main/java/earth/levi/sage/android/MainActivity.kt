@@ -2,10 +2,6 @@ package earth.levi.sage.android
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import earth.levi.sage.Greeting
-import android.widget.TextView
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -15,7 +11,7 @@ import earth.levi.sage.android.di.filesViewModel
 import earth.levi.sage.android.di.viewModelDiGraph
 import earth.levi.sage.android.view.adapter.FolderRecyclerViewAdapter
 import earth.levi.sage.di.DiGraph
-import earth.levi.sage.di.dropboxHostingService
+import earth.levi.sage.type.result.GetFolderContentsResult
 import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
@@ -43,19 +39,28 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
 
         lifecycleScope.launch {
-        //    dropboxApi.getFilesForFolder("/Photos")
+            filesViewModel.updateFolderContentsFromRemote(path = "/Photos").fold(
+                onSuccess = {
+                    when (it) {
+                        is GetFolderContentsResult.Success -> {
+                            // we can show a successful message in UI for a successful sync
+                        }
+                        GetFolderContentsResult.Unauthorized -> {
+                            filesViewModel.loginToHostingService(this@MainActivity)
+                        }
+                    }
+                },
+                onFailure = {
+                    // no fetch happened at all.
+                    // we can display an error message in the UI if we want.
+                }
+            )
         }
-
-        val mainHandler = Handler(Looper.getMainLooper())
-
-        mainHandler.post(object : Runnable {
-            override fun run() {
-                filesViewModel.addRandomFolder()
-
-                mainHandler.postDelayed(this, 1000)
-            }
-        })
     }
 }

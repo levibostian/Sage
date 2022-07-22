@@ -1,3 +1,7 @@
+import java.io.FileInputStream
+import java.util.*
+import kotlin.Throwable
+
 plugins {
     kotlin("multiplatform")
     kotlin("native.cocoapods")
@@ -7,6 +11,25 @@ plugins {
 }
 
 version = "1.0"
+
+android {
+    compileSdk = 32
+
+    defaultConfig {
+        val secretProperties = getSecretProperties()
+        val dropboxAppKey = secretProperties.getProperty("DROPBOX_APP_KEY")
+        manifestPlaceholders["dropboxKey"] = dropboxAppKey
+    }
+    buildTypes {
+        getByName("release") {
+            isMinifyEnabled = true
+        }
+    }
+    buildFeatures {
+        // enable View Binding
+        viewBinding = true
+    }
+}
 
 kotlin {
     android()
@@ -101,4 +124,11 @@ sqldelight {
         packageName = "earth.levi.sage.db"
         sourceFolders = listOf("sqldelight")
     }
+}
+
+fun getSecretProperties(): Properties = Properties().apply {
+    val secretPropertiesFile = file("./secret.properties")
+    if (!secretPropertiesFile.exists()) throw Throwable("Forgot to include file ${secretPropertiesFile.absoluteFile} for building android app")
+
+    load(FileInputStream(secretPropertiesFile))
 }
