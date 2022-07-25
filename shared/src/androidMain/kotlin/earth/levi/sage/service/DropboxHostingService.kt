@@ -1,17 +1,12 @@
 package earth.levi.sage.service
 
-import android.app.Activity
 import android.content.Context
-import android.content.Intent
-import android.os.Bundle
 import com.dropbox.core.DbxException
 import com.dropbox.core.DbxRequestConfig
 import com.dropbox.core.InvalidAccessTokenException
 import com.dropbox.core.oauth.DbxCredential
-import com.russhwolf.settings.get
 import earth.levi.sage.db.File
 import earth.levi.sage.store.KeyValueStore
-import earth.levi.sage.store.KeyValueStoreKeys
 import earth.levi.sage.store.KeyValueStoreKeys.DROPBOX_ACCESS_TOKEN
 import earth.levi.sage.util.Logger
 import com.dropbox.core.android.Auth
@@ -20,14 +15,12 @@ import com.dropbox.core.v2.files.FileMetadata
 import com.dropbox.core.v2.files.FolderMetadata
 import com.dropbox.core.v2.files.ListFolderResult
 import com.dropbox.core.v2.files.Metadata
-import earth.levi.sage.BuildConfig
 import earth.levi.sage.Secrets
 import earth.levi.sage.db.Folder
-import earth.levi.sage.db.SageDatabase
-import earth.levi.sage.di.DiGraph
-import earth.levi.sage.di.keyValueStore
 import earth.levi.sage.type.FolderContents
+import earth.levi.sage.kotlin_inline.Result
 import earth.levi.sage.type.error.HostingServiceGenericFetchError
+import earth.levi.sage.kotlin_inline.fold
 import earth.levi.sage.type.result.GetFolderContentsResult
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine

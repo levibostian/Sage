@@ -14,4 +14,8 @@ actual class LoggerImpl: Logger {
     override fun error(message: String) {
         println(message)
     }
+
+    override fun error(error: Throwable) {
+        error.message?.let { println(it) }
+    }
 }

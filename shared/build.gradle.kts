@@ -8,6 +8,7 @@ plugins {
     id("com.android.library")
     id("com.squareup.sqldelight")
     id("com.rickclephas.kmp.nativecoroutines") version "0.12.6"
+    kotlin("plugin.serialization") version "1.7.10"
 }
 
 version = "1.0"
@@ -62,6 +63,7 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation("com.russhwolf:multiplatform-settings:0.9") // for key/value storage on KMP
+                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.0-RC")
 
                 with(Deps.SqlDelight) {
                     implementation(runtime)

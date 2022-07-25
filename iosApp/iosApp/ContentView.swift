@@ -4,18 +4,20 @@ import shared
 
 struct ContentView: View {
     @StateObject var viewModel = FoldersViewModel(repository: DiGraph.shared.filesRepository)
-    
-    let timer = Timer.publish(every: 1.0, on: .main, in: .common).autoconnect()
 
     var body: some View {
-        TabView {
-            PeopleListView(viewModel: viewModel)
-                .tabItem {
-                    Label("People", systemImage: "person")
+            VStack {
+                TabView {
+                    PeopleListView(viewModel: viewModel)
+                        .tabItem {
+                            Label("People", systemImage: "person")
+                        }
+                }.onAppear {
+                    viewModel.updateFolderContentsFromRemote(path: "/Photos")
+                }.fullScreenCover(isPresented: $viewModel.needsAuthorization) {
+                    DropboxLoginViewControllerPresentable()
                 }
-        }.onReceive(timer) { _ in
-            viewModel.addRandomFolder()
-        }
+            }
     }
 }
 

@@ -11,6 +11,7 @@ import earth.levi.sage.android.di.filesViewModel
 import earth.levi.sage.android.di.viewModelDiGraph
 import earth.levi.sage.android.view.adapter.FolderRecyclerViewAdapter
 import earth.levi.sage.di.DiGraph
+import earth.levi.sage.kotlin_inline.fold
 import earth.levi.sage.type.result.GetFolderContentsResult
 import kotlinx.coroutines.launch
 

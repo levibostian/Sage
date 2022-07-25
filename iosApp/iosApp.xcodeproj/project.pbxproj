@@ -16,6 +16,9 @@
 		F761BFD9287B4D980005C764 /* KMPNativeCoroutinesCore in Frameworks */ = {isa = PBXBuildFile; productRef = F761BFD8287B4D980005C764 /* KMPNativeCoroutinesCore */; };
 		F761BFDC287B4DDC0005C764 /* FoldersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F761BFDB287B4DDC0005C764 /* FoldersViewModel.swift */; };
 		F761BFDE287B500F0005C764 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F761BFDD287B4FF70005C764 /* libsqlite3.tbd */; };
+		F794AC54288E22FC00680F49 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F794AC53288E22FC00680F49 /* AppDelegate.swift */; };
+		F7A2E5FE288C4CA600FD4352 /* DropboxLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A2E5FD288C4CA600FD4352 /* DropboxLoginViewController.swift */; };
+		F7A2E605288C5A6700FD4352 /* ErrorWithMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A2E604288C5A6700FD4352 /* ErrorWithMessage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +33,10 @@
 		CE980746F09D51BF3DC9D497 /* Pods-iosApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.debug.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.debug.xcconfig"; sourceTree = "<group>"; };
 		F761BFDB287B4DDC0005C764 /* FoldersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoldersViewModel.swift; sourceTree = "<group>"; };
 		F761BFDD287B4FF70005C764 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		F794AC53288E22FC00680F49 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		F7A2E5FD288C4CA600FD4352 /* DropboxLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropboxLoginViewController.swift; sourceTree = "<group>"; };
+		F7A2E5FF288C4CCA00FD4352 /* ObjectiveDropboxOfficial.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ObjectiveDropboxOfficial.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F7A2E604288C5A6700FD4352 /* ErrorWithMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorWithMessage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,12 +83,15 @@
 		7555FF7D242A565900829871 /* iosApp */ = {
 			isa = PBXGroup;
 			children = (
+				F7A2E603288C5A5A00FD4352 /* Type */,
+				F7A2E5FC288C4C9600FD4352 /* ViewController */,
 				F761BFDA287B4DB80005C764 /* ViewModel */,
 				058557BA273AAA24004C7B11 /* Assets.xcassets */,
 				7555FF82242A565900829871 /* ContentView.swift */,
 				7555FF8C242A565B00829871 /* Info.plist */,
 				2152FB032600AC8F00CF470E /* iOSApp.swift */,
 				058557D7273AAEEB004C7B11 /* Preview Content */,
+				F794AC53288E22FC00680F49 /* AppDelegate.swift */,
 			);
 			path = iosApp;
 			sourceTree = "<group>";
@@ -98,6 +108,7 @@
 		AF848284D2D8E7C0005912DE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F7A2E5FF288C4CCA00FD4352 /* ObjectiveDropboxOfficial.framework */,
 				F761BFDD287B4FF70005C764 /* libsqlite3.tbd */,
 				2D1C055D96D12905FF909F68 /* Pods_iosApp.framework */,
 			);
@@ -110,6 +121,22 @@
 				F761BFDB287B4DDC0005C764 /* FoldersViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		F7A2E5FC288C4C9600FD4352 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				F7A2E5FD288C4CA600FD4352 /* DropboxLoginViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		F7A2E603288C5A5A00FD4352 /* Type */ = {
+			isa = PBXGroup;
+			children = (
+				F7A2E604288C5A6700FD4352 /* ErrorWithMessage.swift */,
+			);
+			path = Type;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -233,8 +260,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F794AC54288E22FC00680F49 /* AppDelegate.swift in Sources */,
 				F761BFDC287B4DDC0005C764 /* FoldersViewModel.swift in Sources */,
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
+				F7A2E605288C5A6700FD4352 /* ErrorWithMessage.swift in Sources */,
+				F7A2E5FE288C4CA600FD4352 /* DropboxLoginViewController.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

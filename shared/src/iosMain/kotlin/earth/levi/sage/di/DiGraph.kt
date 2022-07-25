@@ -25,4 +25,4 @@ actual val DiGraph.hostingService: HostingService
     get() =  iosHostingService
 
 val DiGraph.iosHostingService: iOSHostingService
-    get() = DropboxHostingService()
+    get() = DropboxHostingService(logger)
